@@ -1,3 +1,4 @@
+import { classnames } from '../../utils/classnames/classnames'
 import { useAuth } from '../../models/auth/useAuth';
 import styles from './Header.module.css';
 
@@ -6,11 +7,11 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      My Burger
+      <span className={styles.title}>My Burger</span>
 
       {
         token ? (
-          <button onClick={logout} className={styles.logout}>Logout</button>
+          <button title="Logout" onClick={logout} className={classnames(styles.logoutBtn, 'linkBtn')}>&#x23FB; <span>Logout</span></button>
         ) : null
       }
     </header>
