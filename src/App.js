@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { AuthContext } from './models/auth/AuthContext';
 import { OrderedBurgerContext } from './models/burger/OrderedBurgerContext';
 import { IngredientsContext } from './models/burger/IngredientsContext';
-import { Login } from './pages/Login/Login';
-import { BurgerCreator } from './pages/BurgerCreator/BurgerCreator';
+import { Routing } from './pages/Routing/Routing';
 
 export function App() {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('auth_token') || '');
   const [ingredients, setIngredients] = useState({});
   const [orderedBurger, setOrderedBurger] = useState([]);
 
@@ -26,10 +25,7 @@ export function App() {
         value={{ orderedBurger, orderAddIngredient, orderRemoveIngredient }}
       >
         <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
-          <div>
-            {!token && <Login />}
-            {token && <BurgerCreator />}
-          </div>
+          <Routing />
         </IngredientsContext.Provider>
       </OrderedBurgerContext.Provider>
     </AuthContext.Provider>

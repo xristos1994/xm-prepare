@@ -1,12 +1,12 @@
 import { useEffect, useContext } from 'react';
-import { AuthContext } from '../../models/auth/AuthContext';
 import { IngredientsContext } from '../../models/burger/IngredientsContext';
 import { xmServiceBaseUrl } from '../../config';
 import styles from './IngredientsList.module.css';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
+import { useAuth } from '../../models/auth/useAuth';
 
 export function IngredientsList() {
-  const { token } = useContext(AuthContext);
+  const { logout, token } = useAuth();
   const { ingredients, setIngredients } = useContext(IngredientsContext);
   const { orderAddIngredient } = useContext(OrderedBurgerContext);
 
@@ -18,6 +18,11 @@ export function IngredientsList() {
             Authorization: `Bearer ${token}`,
           }),
         });
+
+        if (res.status === 401) {
+          logout();
+          return;
+        }
 
         const ingredientsRes = await res.json();
 
@@ -34,6 +39,8 @@ export function IngredientsList() {
     };
 
     fetchIngredients();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

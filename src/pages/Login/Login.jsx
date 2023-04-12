@@ -1,8 +1,9 @@
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../models/auth/useAuth';
 import styles from './Login.module.css';
 
 export function Login() {
-  const { login, error } = useAuth();
+  const { login, error, token } = useAuth();
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -13,6 +14,10 @@ export function Login() {
       name: loginForm.name.value,
       password: loginForm.password.value
     });
+  }
+
+  if(token) {
+    return <Navigate to="/create-burger" replace />;
   }
 
   return (

@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { xmServiceBaseUrl } from '../../config';
 import { AuthContext } from './AuthContext';
 
 export const useAuth = () => {
   const { setToken, token } = useContext(AuthContext)
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const login = async (credentials) => {
     setError('')
@@ -18,6 +20,7 @@ export const useAuth = () => {
 
       if (loginRes.hasOwnProperty('token') && loginRes.token) {
         setToken(loginRes.token);
+        localStorage.setItem('auth_token', loginRes.token);
       } else {
         throw new Error(loginRes);
       }
@@ -31,9 +34,16 @@ export const useAuth = () => {
     }
   };
 
+  const logout = () => {
+    setToken('');
+    localStorage.removeItem('auth_token');
+    navigate('/', { replace: true })
+  }
+
   return {
     token,
     error,
     login,
+    logout
   };
 };
