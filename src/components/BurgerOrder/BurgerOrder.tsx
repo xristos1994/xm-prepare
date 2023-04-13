@@ -3,7 +3,6 @@ import { useIngredients } from '../../models/burger/useIngredients';
 import { xmAssetsBaseUrl } from '../../config';
 import { classnames } from '../../utils/classnames/classnames';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
-// @ts-ignore
 import styles from './BurgerOrder.module.css';
 
 export const BurgerOrder = memo(() => {
@@ -20,7 +19,6 @@ export const BurgerOrder = memo(() => {
         className={styles.bun}
       />
       <div className={styles.ingredients}>
-        {/* @ts-ignore */}
         {orderedBurger.map((ingredientId, index) => {
           const { name, src } = ingredients?.[ingredientId];
 

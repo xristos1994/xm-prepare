@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { classnames } from '../../utils/classnames/classnames';
 import { useAuth } from '../../models/auth/useAuth';
-// @ts-ignore
 import styles from './Header.module.css';
 
 export const Header: FC = () => {

@@ -1,6 +1,5 @@
 import { ReactNode, FC } from 'react';
 import { Header } from '../Header/Header';
-// @ts-ignore
 import styles from './Layout.module.css';
 
 interface IProps {

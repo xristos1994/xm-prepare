@@ -1,8 +1,6 @@
 import { ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
 import { classnames } from '../../utils/classnames/classnames';
-
-// @ts-ignore
 import styles from './Snackbar.module.css';
 
 interface IProps {

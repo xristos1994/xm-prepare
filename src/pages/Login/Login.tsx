@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../models/auth/useAuth';
 import { Snackbar } from '../../components/Snackbar/Snackbar';
-// @ts-ignore
 import styles from './Login.module.css';
 
 export const Login: FC = () => {

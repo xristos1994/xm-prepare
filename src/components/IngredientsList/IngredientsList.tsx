@@ -3,7 +3,6 @@ import { xmAssetsBaseUrl } from '../../config';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
 import { classnames } from '../../utils/classnames/classnames';
 import { useIngredients } from '../../models/burger/useIngredients';
-// @ts-ignore
 import styles from './IngredientsList.module.css';
 
 export const IngredientsList: FC = () => {
