@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 20rem;
+  transform: rotateX(55deg);
 }
 
 .burgerOrderContainer img {
