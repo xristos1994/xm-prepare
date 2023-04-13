@@ -1,14 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import styles from './NotFound.module.css';
+import { Navigate } from 'react-router-dom';
 
 export function NotFound() {
-  return (
-    <div className={styles.notFoundContainer}>
-      Not Found <br /><br /><br />
-
-
-
-      <NavLink to="/create-burger">Create Burger</NavLink>
-    </div>
-  );
+  return <Navigate to="/" replace/>;
 }

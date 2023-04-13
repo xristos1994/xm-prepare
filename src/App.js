@@ -1,37 +1,20 @@
-import { useState, useMemo } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthContext } from './models/auth/AuthContext';
-import { OrderedBurgerContext } from './models/burger/OrderedBurgerContext';
+import { AuthContextProvider } from './models/auth/AuthContext';
+import { OrderedBurgerContextProvider } from './models/burger/OrderedBurgerContext';
 import { Routing } from './pages/Routing/Routing';
-import { useBurgerOrder } from './models/burger/useBurgerOrder';
 
 export function App() {
   const queryClient = new QueryClient();
-  const [token, setToken] = useState(localStorage.getItem('auth_token') || '');
 
-  const {
-    orderedBurger,
-    orderAddIngredient,
-    orderRemoveIngredient,
-    removeAllIngredients,
-  } = useBurgerOrder();
-
-  console.log(222);
+  console.log('App');
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContext.Provider value={{ token, setToken }}>
-        <OrderedBurgerContext.Provider
-          value={{
-            orderedBurger,
-            orderAddIngredient,
-            orderRemoveIngredient,
-            removeAllIngredients
-          }}
-        >
+      <AuthContextProvider>
+        <OrderedBurgerContextProvider>
           <Routing />
-        </OrderedBurgerContext.Provider>
-      </AuthContext.Provider>
+        </OrderedBurgerContextProvider>
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 }

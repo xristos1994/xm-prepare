@@ -5,6 +5,8 @@ import styles from './Header.module.css';
 export function Header() {
   const { token, logout } = useAuth();
 
+  console.log('Header')
+
   return (
     <header className={styles.header}>
       <span className={styles.title}>My Burger</span>

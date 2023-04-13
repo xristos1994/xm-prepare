@@ -1,21 +1,21 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { useIngredients } from '../../models/burger/useIngredients';
 import { xmAssetsBaseUrl } from '../../config';
 import { classnames } from '../../utils/classnames/classnames';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
 import styles from './BurgerOrder.module.css';
 
-export function BurgerOrder() {
+export const BurgerOrder = memo(() => {
   const query = useIngredients();
 
-  console.log(query)
+  console.log('BurgerOrder');
 
   const { orderedBurger, orderRemoveIngredient } =
     useContext(OrderedBurgerContext);
 
   return (
     <div className={styles.burgerOrderContainer}>
-      <img src={`${xmAssetsBaseUrl}/${'bun_top.png'}`} alt={'Bun Top'} />
+      <img src={`${xmAssetsBaseUrl}/${'bun_top.png'}`} alt={'Bun Top'} className={styles.bun}/>
       <div className={styles.ingredients}>
         {orderedBurger.map((ingredientId, index) => {
           const { name, src } = query.data?.[ingredientId];
@@ -38,10 +38,10 @@ export function BurgerOrder() {
       <img
         src={`${xmAssetsBaseUrl}/${'bun_bottom.png'}`}
         alt={'Bun Buttom'}
-        className={classnames({
+        className={classnames(styles.bun, {
           [styles.burgerMarginAdjustment]: orderedBurger.length,
         })}
       />
     </div>
   );
-}
+});

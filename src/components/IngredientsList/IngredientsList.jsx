@@ -1,17 +1,17 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { xmAssetsBaseUrl } from '../../config';
 import styles from './IngredientsList.module.css';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
 import { classnames } from '../../utils/classnames/classnames';
 import { useIngredients } from '../../models/burger/useIngredients';
 
-export function IngredientsList() {
+export const IngredientsList = memo(() => {
   const query = useIngredients();
 
   const { orderAddIngredient, removeAllIngredients } =
     useContext(OrderedBurgerContext);
 
-    console.log(11111)
+    console.log('IngredientsList');
 
   return (
     <div className={styles.ingredientsListContainer}>
@@ -49,4 +49,4 @@ export function IngredientsList() {
       </div>
     </div>
   );
-}
+});

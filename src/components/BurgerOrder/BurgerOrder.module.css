@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 100%;
   max-width: 20rem;
-  transform: rotateX(55deg);
 }
 
 .burgerOrderContainer img {
@@ -22,7 +21,6 @@
 .ingredients:hover .ingredient {
   opacity: 0.6;
   transform: scale(1);
-
 }
 
 .ingredients:hover .ingredient:hover {
@@ -33,4 +31,8 @@
 .ingredient:focus {
   opacity: 1;
   transform: scale(1.1);
+}
+
+.bun {
+  z-index: 1;
 }
