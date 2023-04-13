@@ -1,10 +1,12 @@
+import { FC, FormEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../models/auth/useAuth';
 import { Snackbar } from '../../components/Snackbar/Snackbar';
+// @ts-ignore
 import styles from './Login.module.css';
 
-export function Login() {
+export const Login: FC = () => {
   const { login, error, token } = useAuth();
   const [hasError, setHasError] = useState(!!error);
 
@@ -20,14 +22,14 @@ export function Login() {
     }
   }, [error, setHasError]);
 
-  const onSubmit = (event) => {
+  const onSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    const loginForm = document.forms[0];
+    const data = new FormData(event.currentTarget as HTMLFormElement);
 
     login({
-      name: loginForm.name.value,
-      password: loginForm.password.value,
+      name: data.get('name') as string,
+      password: data.get('password') as string
     });
   };
 

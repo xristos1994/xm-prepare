@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from './../Login/Login';
 import { BurgerCreator } from './../BurgerCreator/BurgerCreator';
@@ -5,7 +6,7 @@ import { NotFound } from './../NotFound/NotFound';
 import { ProtectedRoute } from './ProtectedRoute';
 import { Layout } from '../../components/Layout/Layout';
 
-export function Routing() {
+export const Routing: FC = () => {
   return (
     <BrowserRouter>
       <Layout>

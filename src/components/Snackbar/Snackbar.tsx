@@ -1,8 +1,17 @@
+import { ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
 import { classnames } from '../../utils/classnames/classnames';
+
+// @ts-ignore
 import styles from './Snackbar.module.css';
 
-export function Snackbar(props) {
+interface IProps {
+  type?: 'error' | 'warning' | 'info' | 'success';
+  text: string;
+  onClose: () => void
+}
+
+export const Snackbar = (props: IProps): ReactPortal  => {
   return createPortal(
     <div className={classnames(styles.snackbarContainer, styles[props.type || 'info'])}>
        {props.text}

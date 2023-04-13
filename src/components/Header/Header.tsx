@@ -1,8 +1,10 @@
+import { FC } from 'react';
 import { classnames } from '../../utils/classnames/classnames';
 import { useAuth } from '../../models/auth/useAuth';
+// @ts-ignore
 import styles from './Header.module.css';
 
-export function Header() {
+export const Header: FC = () => {
   const { token, logout } = useAuth();
 
   console.log('Header')

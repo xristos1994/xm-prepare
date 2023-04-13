@@ -1,12 +1,13 @@
-import { memo, useContext } from 'react';
+import { useContext, FC } from 'react';
 import { xmAssetsBaseUrl } from '../../config';
-import styles from './IngredientsList.module.css';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
 import { classnames } from '../../utils/classnames/classnames';
 import { useIngredients } from '../../models/burger/useIngredients';
+// @ts-ignore
+import styles from './IngredientsList.module.css';
 
-export const IngredientsList = memo(() => {
-  const query = useIngredients();
+export const IngredientsList: FC = () => {
+  const { ingredients } = useIngredients();
 
   const { orderAddIngredient, removeAllIngredients } =
     useContext(OrderedBurgerContext);
@@ -19,7 +20,7 @@ export const IngredientsList = memo(() => {
 
       <div className={styles.ingredients}>
 
-        {Object.entries(query.data || []).map(([, ingredient]) => (
+        {Object.entries(ingredients || {}).map(([, ingredient]) => (
           <button
             key={ingredient.id}
             onClick={() => orderAddIngredient(ingredient.id)}
@@ -49,4 +50,4 @@ export const IngredientsList = memo(() => {
       </div>
     </div>
   );
-});
+};

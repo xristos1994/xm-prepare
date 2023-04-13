@@ -3,10 +3,11 @@ import { useIngredients } from '../../models/burger/useIngredients';
 import { xmAssetsBaseUrl } from '../../config';
 import { classnames } from '../../utils/classnames/classnames';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
+// @ts-ignore
 import styles from './BurgerOrder.module.css';
 
 export const BurgerOrder = memo(() => {
-  const query = useIngredients();
+  const { ingredients } = useIngredients();
 
   console.log('BurgerOrder');
 
@@ -17,8 +18,9 @@ export const BurgerOrder = memo(() => {
     <div className={styles.burgerOrderContainer}>
       <img src={`${xmAssetsBaseUrl}/${'bun_top.png'}`} alt={'Bun Top'} className={styles.bun}/>
       <div className={styles.ingredients}>
+      {/* @ts-ignore */}
         {orderedBurger.map((ingredientId, index) => {
-          const { name, src } = query.data?.[ingredientId];
+          const { name, src } = ingredients?.[ingredientId];
 
           return (
             <button
