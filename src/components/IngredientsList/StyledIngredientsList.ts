@@ -8,7 +8,7 @@ export const StyledIngredientsList = styled.div/* scss */`
   max-height: calc(100vh - 6rem);
   overflow-y: auto;
   position: sticky;
-  top: 4rem;
+  top: 4.5rem;
   background-color: white;
   z-index: 2;
 

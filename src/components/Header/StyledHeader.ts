@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.header/* scss */ `
   z-index: 10;
-  background-color: white;
-  padding: 0.5rem;
+  background-color: var(--header-bg-color);
+  color: var(--header-color);
+  padding: 0.7rem;
   text-align: center;
   position: sticky;
   top: 0;

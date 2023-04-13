@@ -5,6 +5,10 @@ export const GlobalStyle = createGlobalStyle/* css */`
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    font-family: Arial, sans-serif;
+    background: var(--main-bg-color);
+    color: var(--main-color);
   }
 
   * {
@@ -71,10 +75,6 @@ export const GlobalStyle = createGlobalStyle/* css */`
     height: 2rem;
     border-radius: 0.4rem;
     font-size: 1.2rem;
-  }
-
-  .primaryBtn {
-    background-color: lightgray !important;
-    color: black;
+    background: var(--main-bg-color);
   }
 `
