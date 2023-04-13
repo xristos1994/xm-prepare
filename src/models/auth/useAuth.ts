@@ -11,7 +11,7 @@ export const useAuth: () => IAuth = () => {
   const { setToken, token } = useContext(AuthContext);
   const [credentials, setCredentials] = useState<ICredentials | null>(null);
 
-  useQuery({
+  const query = useQuery({
     queryKey: ['login', credentials],
     queryFn: ({ queryKey }) => {
       return queryKey?.[1] || credentials
@@ -60,5 +60,6 @@ export const useAuth: () => IAuth = () => {
     error,
     login,
     logout,
+    isLoading: query.isLoading && query.isFetching,
   };
 };

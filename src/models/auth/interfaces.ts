@@ -15,6 +15,7 @@ export interface ILoginSuccessData {
 export interface IAuth {
   token: string;
   error: string;
+  isLoading: boolean;
   login: (credentials: ICredentials) => void;
   logout: () => void;
 }

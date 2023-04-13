@@ -7,7 +7,7 @@ import { Snackbar } from '../../components/Snackbar/Snackbar';
 import styles from './Login.module.css';
 
 export const Login: FC = () => {
-  const { login, error, token } = useAuth();
+  const { login, error, token, isLoading } = useAuth();
   const [hasError, setHasError] = useState(!!error);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const Login: FC = () => {
         <br />
         <br />
 
-        <input type='submit' className='primaryBtn' />
+        <input type='submit' className='primaryBtn' disabled={isLoading} value={isLoading ? 'LOADING...' : 'LOGIN'}/>
       </form>
 
       {hasError ? (

@@ -8,6 +8,7 @@ export type TIngredient = Record<IIngredient['id'], IIngredient>;
 
 export interface IIngredients {
   ingredients: TIngredient;
+  isLoading: boolean;
 }
 
 export interface IBurgerOrder {

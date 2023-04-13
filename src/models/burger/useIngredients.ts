@@ -18,5 +18,8 @@ export const useIngredients: () => IIngredients = () => {
     },
   });
 
-  return { ingredients: query?.data || {} };
+  return {
+    ingredients: query?.data || {},
+    isLoading: query.isLoading && query.isFetching,
+  };
 };
