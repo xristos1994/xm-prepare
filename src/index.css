@@ -8,7 +8,7 @@ body {
   box-sizing: border-box;
 }
 
-button {
+button, input[type="submit"] {
   border: none;
   margin: 0;
   padding: 0;
@@ -33,15 +33,23 @@ button {
 
   /* Corrects inability to style clickable `input` types in iOS */
   -webkit-appearance: none;
+
+  cursor: pointer;
+
 }
 
-Button::-moz-focus-inner {
+button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-.linkBtn {
+.linkBtn:hover {
   cursor: pointer;
+  text-decoration: underline;
+}
+
+.linkBtn:focus-visible, input[type="submit"]:focus-visible {
+  border: 2px solid currentColor;
 }
 
 label {
@@ -51,4 +59,10 @@ label {
 input {
   height: 2rem;
   border-radius: 0.4rem;
+  font-size: 1.2rem;
+}
+
+.primaryBtn {
+  background-color: lightgray !important;
+  color: black;
 }

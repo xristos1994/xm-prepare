@@ -7,7 +7,7 @@ import styles from './Login.module.css';
 
 export function Login() {
   const { login, error, token } = useAuth();
-  const [ hasError, setHasError ] = useState(!!error);
+  const [hasError, setHasError] = useState(!!error);
 
   useEffect(() => {
     setHasError(!!error);
@@ -53,12 +53,16 @@ export function Login() {
         <br />
         <br />
 
-        <input type='submit' />
+        <input type='submit' className='primaryBtn' />
       </form>
 
-      {hasError
-        ? <Snackbar onClose={() => setHasError(false)} text={error} type="error" />
-        : null}
+      {hasError ? (
+        <Snackbar
+          onClose={() => setHasError(false)}
+          text={error}
+          type='error'
+        />
+      ) : null}
     </div>
   );
 }

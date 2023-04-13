@@ -10,7 +10,7 @@ export function App() {
   const [orderedBurger, setOrderedBurger] = useState([]);
 
   const orderAddIngredient = (ingredientId) =>
-    setOrderedBurger((ingredients) => [...ingredients, ingredientId]);
+    setOrderedBurger((ingredients) => [ingredientId, ...ingredients]);
 
   const orderRemoveIngredient = (ingredientIndex) =>
     setOrderedBurger((ingredients) =>
@@ -19,10 +19,14 @@ export function App() {
         .concat(ingredients.slice(ingredientIndex + 1))
     );
 
+  const removeAllIngredients = () => {
+    setOrderedBurger([]);
+  }
+
   return (
     <AuthContext.Provider value={{ token, setToken }}>
       <OrderedBurgerContext.Provider
-        value={{ orderedBurger, orderAddIngredient, orderRemoveIngredient }}
+        value={{ orderedBurger, orderAddIngredient, orderRemoveIngredient, removeAllIngredients }}
       >
         <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
           <Routing />

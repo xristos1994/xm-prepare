@@ -1,14 +1,15 @@
 import { useEffect, useContext } from 'react';
 import { IngredientsContext } from '../../models/burger/IngredientsContext';
-import { xmServiceBaseUrl } from '../../config';
+import { xmAssetsBaseUrl, xmServiceBaseUrl } from '../../config';
 import styles from './IngredientsList.module.css';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
 import { useAuth } from '../../models/auth/useAuth';
+import { classnames } from '../../utils/classnames/classnames';
 
 export function IngredientsList() {
   const { logout, token } = useAuth();
   const { ingredients, setIngredients } = useContext(IngredientsContext);
-  const { orderAddIngredient } = useContext(OrderedBurgerContext);
+  const { orderAddIngredient, removeAllIngredients } = useContext(OrderedBurgerContext);
 
   useEffect(() => {
     const fetchIngredients = async () => {
@@ -40,14 +41,37 @@ export function IngredientsList() {
 
     fetchIngredients();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className={styles.IngredientsListContainer}>
-      {Object.entries(ingredients).map(([, ingredient]) => (
-        <div key={ingredient.id} onClick={() => orderAddIngredient(ingredient.id)}>{ingredient.name}</div>
-      ))}
+    <div className={styles.ingredientsListContainer}>
+      <div className={styles.title}>Ingredients</div>
+
+      <div className={styles.ingredients}>
+        {Object.entries(ingredients).map(([, ingredient]) => (
+          <button
+            key={ingredient.id}
+            onClick={() => orderAddIngredient(ingredient.id)}
+            className={styles.ingredientBtn}
+            title={`${ingredient.name} Click to add`}
+          >
+            <span className={styles.info}>
+              <img
+                src={`${xmAssetsBaseUrl}/${ingredient.src}`}
+                alt={ingredient.name}
+              />
+              <span className={styles.name}>{ingredient.name}</span>
+            </span>
+            <span>+</span>
+          </button>
+        ))}
+      </div>
+
+      <button className={classnames('linkBtn', styles.clearBurgerBtn)} onClick={removeAllIngredients}>Clear Burger</button>
+      <div className={styles.userHelp}>
+        &#x261E; Click on ingredient image in order to remove it from burger.
+      </div>
     </div>
   );
 }
