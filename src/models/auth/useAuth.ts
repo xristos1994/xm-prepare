@@ -4,22 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from './postLogin';
 import { AuthContext } from './AuthContext';
-
-export interface ICredentials {
-  name: string;
-  password: string;
-}
-
-export interface ILoginSuccessData {
-  token: string;
-}
-
-interface IAuth {
-  token: string;
-  error: string;
-  login: (credentials: ICredentials) => void;
-  logout: () => void;
-}
+import { ICredentials, ILoginSuccessData, IAuth } from './interfaces';
 
 export const useAuth: () => IAuth = () => {
   const [error, setError] = useState('');

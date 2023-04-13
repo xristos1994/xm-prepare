@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { xmServiceBaseUrl } from '../../config';
-import { ICredentials, ILoginSuccessData } from './useAuth';
+import { ICredentials, ILoginSuccessData } from './interfaces';
 
 export function postLogin(
   credentials: ICredentials

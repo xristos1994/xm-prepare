@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { xmServiceBaseUrl } from '../../config';
-import { TIngredient, IIngredient } from './useIngredients';
+import { TIngredient, IIngredient } from './interfaces';
 
 export function fetchIngredients (token: string): Promise<TIngredient> {
   return axios

@@ -1,10 +1,6 @@
 import { ReactNode, Context, FC } from 'react';
 import { createContext, useState } from 'react';
-
-interface IAuthContextValue {
-  token: string;
-  setToken: (newValue: string) => void;
-}
+import { IAuthContextValue } from './interfaces';
 
 interface IProps {
   children: ReactNode

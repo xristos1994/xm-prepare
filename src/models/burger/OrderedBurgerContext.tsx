@@ -1,5 +1,6 @@
 import { createContext, Context, ReactNode, FC } from 'react';
-import { useBurgerOrder, IBurgerOrder } from './useBurgerOrder';
+import { useBurgerOrder } from './useBurgerOrder';
+import { IBurgerOrder } from './interfaces';
 
 interface IProps {
   children: ReactNode

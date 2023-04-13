@@ -1,12 +1,6 @@
 import { useState } from 'react';
-import { IIngredient } from './useIngredients';
+import { IIngredient, IBurgerOrder } from './interfaces';
 
-export interface IBurgerOrder {
-  orderedBurger: IIngredient['id'][];
-  orderAddIngredient: (ingredientId: IIngredient['id']) => void;
-  orderRemoveIngredient: (ingredientIndex: number) => void;
-  removeAllIngredients: () => void
-}
 
 export const useBurgerOrder: () => IBurgerOrder = () => {
   const [orderedBurger, setOrderedBurger] = useState<IBurgerOrder['orderedBurger']>([]);
