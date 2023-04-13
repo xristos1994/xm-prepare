@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../models/auth/useAuth';
 import { Snackbar } from '../../components/Snackbar/Snackbar';
@@ -41,13 +40,23 @@ export function Login() {
       <h1>Login To My Burger</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor='name'>Name</label>
-        <input type='text' name='name' required />
+        <input
+          type='text'
+          name='name'
+          required
+          autoComplete='off'
+        />
 
         <br />
         <br />
 
         <label htmlFor='password'>Password</label>
-        <input type='password' name='password' required />
+        <input
+          type='password'
+          name='password'
+          required
+          autoComplete='off'
+        />
 
         <br />
         <br />
