@@ -9,7 +9,11 @@ interface IProps {
   onClose: () => void;
 }
 
-export const Snackbar = (props: IProps): ReactPortal => {
+export const Snackbar = (props: IProps): ReactPortal | null => {
+  if (!props.text) {
+    return null
+  }
+
   return createPortal(
     <div
       className={classnames(
