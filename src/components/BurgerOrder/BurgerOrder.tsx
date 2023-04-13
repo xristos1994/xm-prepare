@@ -3,7 +3,7 @@ import { useIngredients } from '../../models/burger/useIngredients';
 import { xmAssetsBaseUrl } from '../../config';
 import { classnames } from '../../utils/classnames/classnames';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
-import styles from './BurgerOrder.module.css';
+import { StyledBurgerOrder } from './StyledBurgerOrder';
 
 export const BurgerOrder = memo(() => {
   const { ingredients } = useIngredients();
@@ -12,13 +12,13 @@ export const BurgerOrder = memo(() => {
     useContext(OrderedBurgerContext);
 
   return (
-    <div className={styles.burgerOrderContainer}>
+    <StyledBurgerOrder>
       <img
         src={`${xmAssetsBaseUrl}/${'bun_top.png'}`}
         alt={'Bun Top'}
-        className={styles.bun}
+        className='bun'
       />
-      <div className={styles.ingredients}>
+      <div className='ingredients'>
         {orderedBurger.map((ingredientId, index) => {
           const { name, src } = ingredients?.[ingredientId];
 
@@ -27,10 +27,7 @@ export const BurgerOrder = memo(() => {
               key={index}
               onClick={() => orderRemoveIngredient(index)}
               title={`${name}: Click to remove`}
-              className={classnames(
-                styles.burgerMarginAdjustment,
-                styles.ingredient
-              )}
+              className='burgerMarginAdjustment ingredient'
             >
               <img src={`${xmAssetsBaseUrl}/${src}`} alt={name} />
             </button>
@@ -40,10 +37,10 @@ export const BurgerOrder = memo(() => {
       <img
         src={`${xmAssetsBaseUrl}/${'bun_bottom.png'}`}
         alt={'Bun Buttom'}
-        className={classnames(styles.bun, {
-          [styles.burgerMarginAdjustment]: orderedBurger.length,
+        className={classnames('bun', {
+          burgerMarginAdjustment: orderedBurger.length,
         })}
       />
-    </div>
+    </StyledBurgerOrder>
   );
 });

@@ -1,7 +1,6 @@
 import { ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
-import { classnames } from '../../utils/classnames/classnames';
-import styles from './Snackbar.module.css';
+import { StyledSnackbar } from './StyledSnackbar';
 
 interface IProps {
   type?: 'error' | 'warning' | 'info' | 'success';
@@ -15,20 +14,15 @@ export const Snackbar = (props: IProps): ReactPortal | null => {
   }
 
   return createPortal(
-    <div
-      className={classnames(
-        styles.snackbarContainer,
-        styles[props.type || 'info']
-      )}
-    >
+    <StyledSnackbar className={props.type || 'info'}>
       {props.text}
       <button
-        className={classnames('linkBtn', styles.cloceBtn)}
+        className='linkBtn cloceBtn'
         onClick={props.onClose}
       >
         &#x2715;
       </button>
-    </div>,
+    </StyledSnackbar>,
     document.body
   );
 };

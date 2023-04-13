@@ -1,9 +1,8 @@
 import { useContext, FC } from 'react';
 import { xmAssetsBaseUrl } from '../../config';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
-import { classnames } from '../../utils/classnames/classnames';
 import { useIngredients } from '../../models/burger/useIngredients';
-import styles from './IngredientsList.module.css';
+import { StyledIngredientsList } from './StyledIngredientsList';
 
 export const IngredientsList: FC = () => {
   const { ingredients: _ingredients, isLoading } = useIngredients();
@@ -16,28 +15,27 @@ export const IngredientsList: FC = () => {
   );
 
   return (
-    <div className={styles.ingredientsListContainer}>
-      <div className={styles.title}>Ingredients</div>
+    <StyledIngredientsList>
+      <div className='title'>Ingredients</div>
 
-      <div className={styles.ingredients}>
-        {
-          isLoading && <div>Loading Ingredients...</div>
-        }
+      <div className='ingredients'>
+        {isLoading && <div>Loading Ingredients...</div>}
 
-        {ingredients.length > 0 && !isLoading &&
+        {ingredients.length > 0 &&
+          !isLoading &&
           ingredients.map((ingredient) => (
             <button
               key={ingredient.id}
               onClick={() => orderAddIngredient(ingredient.id)}
-              className={styles.ingredientBtn}
+              className='ingredientBtn'
               title={`${ingredient.name} Click to add`}
             >
-              <span className={styles.info}>
+              <span className='info'>
                 <img
                   src={`${xmAssetsBaseUrl}/${ingredient.src}`}
                   alt={ingredient.name}
                 />
-                <span className={styles.name}>{ingredient.name}</span>
+                <span className='name'>{ingredient.name}</span>
               </span>
               <span>+</span>
             </button>
@@ -45,14 +43,14 @@ export const IngredientsList: FC = () => {
       </div>
 
       <button
-        className={classnames('linkBtn', styles.clearBurgerBtn)}
+        className='linkBtn clearBurgerBtn'
         onClick={removeAllIngredients}
       >
         Clear Burger
       </button>
-      <div className={styles.userHelp}>
+      <div className='userHelp'>
         &#x261E; Click on ingredient image in order to remove it from burger.
       </div>
-    </div>
+    </StyledIngredientsList>
   );
 };

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../models/auth/useAuth';
 import { Snackbar } from '../../components/Snackbar/Snackbar';
-import styles from './Login.module.css';
+import { StyledLogin } from './StyledLogin';
 
 export const Login: FC = () => {
   const { login, error, token, isLoading } = useAuth();
@@ -37,7 +37,7 @@ export const Login: FC = () => {
   }
 
   return (
-    <div className={styles.loginContainer}>
+    <StyledLogin>
       <h1>Login To My Burger</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor='name'>Name</label>
@@ -63,6 +63,6 @@ export const Login: FC = () => {
           type='error'
         />
       ) : null}
-    </div>
+    </StyledLogin>
   );
 };

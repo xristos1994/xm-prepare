@@ -1,6 +1,6 @@
 import { ReactNode, FC } from 'react';
 import { Header } from '../Header/Header';
-import styles from './Layout.module.css';
+import { StyledLayout } from './StyledLayout';
 
 interface IProps {
   children: ReactNode;
@@ -8,9 +8,9 @@ interface IProps {
 
 export const Layout: FC<IProps> = ({ children }) => {
   return (
-    <div>
+    <StyledLayout>
       <Header />
-      <main className={styles.main}>{children}</main>
-    </div>
+      <main className='main'>{children}</main>
+    </StyledLayout>
   );
 };
