@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { deviceMediaQuery } from '../../styles/breakpoints';
 
 export const StyledIngredientsList = styled.div/* scss */`
   border: 1px solid lightgrey;
@@ -68,7 +69,7 @@ export const StyledIngredientsList = styled.div/* scss */`
     border-top: 1px dashed lightgray;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and ${deviceMediaQuery.mobile} {
     max-height: unset;
     width: 100%;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { deviceMediaQuery } from '../../styles/breakpoints';
 
 export const StyledHeader = styled.header/* scss */ `
   z-index: 10;
@@ -22,7 +23,7 @@ export const StyledHeader = styled.header/* scss */ `
     right: 0.5rem;
     top: 1rem;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and ${deviceMediaQuery.mobile} {
       span {
         display: none;
       }
