@@ -4,7 +4,7 @@ import { xmServiceBaseUrl } from '../../config';
 import { AuthContext } from './AuthContext';
 
 export const useAuth = () => {
-  const { setToken, token } = useContext(AuthContext)
+  const { setToken, token } = useContext(AuthContext);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 

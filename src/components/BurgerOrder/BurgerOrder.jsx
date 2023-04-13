@@ -1,21 +1,24 @@
 import { useContext } from 'react';
-import { classnames } from '../../utils/classnames/classnames';
+import { useIngredients } from '../../models/burger/useIngredients';
 import { xmAssetsBaseUrl } from '../../config';
+import { classnames } from '../../utils/classnames/classnames';
 import { OrderedBurgerContext } from '../../models/burger/OrderedBurgerContext';
-import { IngredientsContext } from '../../models/burger/IngredientsContext';
 import styles from './BurgerOrder.module.css';
 
 export function BurgerOrder() {
+  const query = useIngredients();
+
+  console.log(query)
+
   const { orderedBurger, orderRemoveIngredient } =
     useContext(OrderedBurgerContext);
-  const { ingredients = {} } = useContext(IngredientsContext);
 
   return (
     <div className={styles.burgerOrderContainer}>
       <img src={`${xmAssetsBaseUrl}/${'bun_top.png'}`} alt={'Bun Top'} />
       <div className={styles.ingredients}>
         {orderedBurger.map((ingredientId, index) => {
-          const { name, src } = ingredients[ingredientId];
+          const { name, src } = query.data?.[ingredientId];
 
           return (
             <button

@@ -1,37 +1,37 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContext } from './models/auth/AuthContext';
 import { OrderedBurgerContext } from './models/burger/OrderedBurgerContext';
-import { IngredientsContext } from './models/burger/IngredientsContext';
 import { Routing } from './pages/Routing/Routing';
+import { useBurgerOrder } from './models/burger/useBurgerOrder';
 
 export function App() {
+  const queryClient = new QueryClient();
   const [token, setToken] = useState(localStorage.getItem('auth_token') || '');
-  const [ingredients, setIngredients] = useState({});
-  const [orderedBurger, setOrderedBurger] = useState([]);
 
-  const orderAddIngredient = (ingredientId) =>
-    setOrderedBurger((ingredients) => [ingredientId, ...ingredients]);
+  const {
+    orderedBurger,
+    orderAddIngredient,
+    orderRemoveIngredient,
+    removeAllIngredients,
+  } = useBurgerOrder();
 
-  const orderRemoveIngredient = (ingredientIndex) =>
-    setOrderedBurger((ingredients) =>
-      ingredients
-        .slice(0, ingredientIndex)
-        .concat(ingredients.slice(ingredientIndex + 1))
-    );
-
-  const removeAllIngredients = () => {
-    setOrderedBurger([]);
-  }
+  console.log(222);
 
   return (
-    <AuthContext.Provider value={{ token, setToken }}>
-      <OrderedBurgerContext.Provider
-        value={{ orderedBurger, orderAddIngredient, orderRemoveIngredient, removeAllIngredients }}
-      >
-        <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
+    <QueryClientProvider client={queryClient}>
+      <AuthContext.Provider value={{ token, setToken }}>
+        <OrderedBurgerContext.Provider
+          value={{
+            orderedBurger,
+            orderAddIngredient,
+            orderRemoveIngredient,
+            removeAllIngredients
+          }}
+        >
           <Routing />
-        </IngredientsContext.Provider>
-      </OrderedBurgerContext.Provider>
-    </AuthContext.Provider>
+        </OrderedBurgerContext.Provider>
+      </AuthContext.Provider>
+    </QueryClientProvider>
   );
 }

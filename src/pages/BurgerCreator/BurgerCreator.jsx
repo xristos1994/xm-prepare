@@ -3,9 +3,8 @@ import { IngredientsList } from '../../components/IngredientsList/IngredientsLis
 import styles from './BurgerCreator.module.css';
 
 export function BurgerCreator() {
-
   return <div className={styles.burgerCreatorContainer}>
-    <IngredientsList/>
+    <IngredientsList />
     <BurgerOrder />
   </div>;
 }
