@@ -1,37 +1,46 @@
 import { useContext, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { xmServiceBaseUrl } from '../../config';
+import { postLogin } from './postLogin';
 import { AuthContext } from './AuthContext';
 
 export const useAuth = () => {
-  const { setToken, token } = useContext(AuthContext);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const { setToken, token } = useContext(AuthContext);
+  const [ credentials, setCredentials ] = useState(null);
 
-  const login = async (credentials) => {
-    setError('')
-    try {
-      const res = await fetch(`${xmServiceBaseUrl}/login`, {
-        method: 'POST',
-        body: JSON.stringify(credentials),
-      });
-
-      const loginRes = await res.json();
-
-      if (loginRes.hasOwnProperty('token') && loginRes.token) {
-        setToken(loginRes.token);
-        localStorage.setItem('auth_token', loginRes.token);
-      } else {
-        throw new Error(loginRes);
-      }
-
-    } catch (error) {
-      if (error.message === 'Invalid Credentials') {
+  useQuery({
+    queryKey: ['login', credentials],
+    queryFn: ({queryKey}) => { return  queryKey?.[1] || credentials ? postLogin(queryKey?.[1] || credentials) : null },
+    refetchOnWindowFocus: false,
+    enabled: !!credentials,
+    retry: false,
+    onError: (error) => {
+      if(error.response?.status === 400) {
         setError('Invalid Credentials');
       } else {
-        setError('Something went wrong.');
+        setError(error.message || 'Something went wrong');
+      }
+    },
+    onSuccess: (data) => {
+      if (!data) {
+        return;
+      }
+
+      if (data.hasOwnProperty('token') && data.token) {
+        setToken(data.token);
+        localStorage.setItem('auth_token', data.token);
+      } else {
+        setError('Something went wrong');
       }
     }
+  });
+
+  const navigate = useNavigate();
+
+  const login = (credentials) => {
+    setError('');
+    setCredentials(credentials);
   };
 
   const logout = () => {

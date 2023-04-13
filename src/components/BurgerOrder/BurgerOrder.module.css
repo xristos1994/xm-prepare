@@ -18,12 +18,12 @@
   transition: transform .2s;
 }
 
-.ingredients:hover .ingredient {
+.ingredients:hover .ingredient, .ingredients:focus-within .ingredient {
   opacity: 0.6;
   transform: scale(1);
 }
 
-.ingredients:hover .ingredient:hover {
+.ingredients:hover .ingredient:hover, .ingredients:focus-within .ingredient:focus {
   opacity: 1;
   transform: scale(1.1);
 }
