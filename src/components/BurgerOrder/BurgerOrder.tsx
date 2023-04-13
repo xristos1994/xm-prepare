@@ -9,16 +9,18 @@ import styles from './BurgerOrder.module.css';
 export const BurgerOrder = memo(() => {
   const { ingredients } = useIngredients();
 
-  console.log('BurgerOrder');
-
   const { orderedBurger, orderRemoveIngredient } =
     useContext(OrderedBurgerContext);
 
   return (
     <div className={styles.burgerOrderContainer}>
-      <img src={`${xmAssetsBaseUrl}/${'bun_top.png'}`} alt={'Bun Top'} className={styles.bun}/>
+      <img
+        src={`${xmAssetsBaseUrl}/${'bun_top.png'}`}
+        alt={'Bun Top'}
+        className={styles.bun}
+      />
       <div className={styles.ingredients}>
-      {/* @ts-ignore */}
+        {/* @ts-ignore */}
         {orderedBurger.map((ingredientId, index) => {
           const { name, src } = ingredients?.[ingredientId];
 

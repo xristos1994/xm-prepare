@@ -6,10 +6,10 @@ import { IngredientsList } from '../../components/IngredientsList/IngredientsLis
 import styles from './BurgerCreator.module.css';
 
 export const BurgerCreator: FC = () => {
-  console.log('BurgerCreator Page');
-
-  return <div className={styles.burgerCreatorContainer}>
-    <IngredientsList />
-    <BurgerOrder />
-  </div>;
+  return (
+    <div className={styles.burgerCreatorContainer}>
+      <IngredientsList />
+      <BurgerOrder />
+    </div>
+  );
 };

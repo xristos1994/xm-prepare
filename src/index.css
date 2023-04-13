@@ -8,7 +8,8 @@ body {
   box-sizing: border-box;
 }
 
-button, input[type="submit"] {
+button,
+input[type='submit'] {
   border: none;
   margin: 0;
   padding: 0;
@@ -35,10 +36,10 @@ button, input[type="submit"] {
   -webkit-appearance: none;
 
   cursor: pointer;
-
 }
 
-button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner {
+button::-moz-focus-inner,
+input[type='submit']::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
@@ -48,7 +49,8 @@ button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner {
   text-decoration: underline;
 }
 
-.linkBtn:focus-visible, input[type="submit"]:focus-visible {
+.linkBtn:focus-visible,
+input[type='submit']:focus-visible {
   border: 2px solid currentColor;
 }
 

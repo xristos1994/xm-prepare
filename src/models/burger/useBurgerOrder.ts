@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { IIngredient, IBurgerOrder } from './interfaces';
 
-
 export const useBurgerOrder: () => IBurgerOrder = () => {
-  const [orderedBurger, setOrderedBurger] = useState<IBurgerOrder['orderedBurger']>([]);
+  const [orderedBurger, setOrderedBurger] = useState<
+    IBurgerOrder['orderedBurger']
+  >([]);
 
-  const orderAddIngredient = (ingredientId: IIngredient['id'] ) =>
+  const orderAddIngredient = (ingredientId: IIngredient['id']) =>
     setOrderedBurger((ingredients) => [ingredientId, ...ingredients]);
 
   const orderRemoveIngredient = (ingredientIndex: number) =>
@@ -23,6 +24,6 @@ export const useBurgerOrder: () => IBurgerOrder = () => {
     orderedBurger,
     orderAddIngredient,
     orderRemoveIngredient,
-    removeAllIngredients
+    removeAllIngredients,
   };
-}
+};

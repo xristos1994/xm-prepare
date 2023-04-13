@@ -29,7 +29,8 @@
   justify-content: space-between;
 }
 
-.ingredientBtn:hover, .ingredientBtn:focus-visible {
+.ingredientBtn:hover,
+.ingredientBtn:focus-visible {
   background-color: lightgray;
 }
 
@@ -65,7 +66,7 @@
 @media only screen and (max-width: 600px) {
   .ingredientsListContainer {
     max-height: unset;
-    width: 100%
+    width: 100%;
   }
 
   .ingredients {
@@ -84,4 +85,3 @@
     gap: 1rem;
   }
 }
-

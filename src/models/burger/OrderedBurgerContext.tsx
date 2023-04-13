@@ -3,17 +3,19 @@ import { useBurgerOrder } from './useBurgerOrder';
 import { IBurgerOrder } from './interfaces';
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
-export const OrderedBurgerContext: Context<IBurgerOrder> = createContext({} as IBurgerOrder);
+export const OrderedBurgerContext: Context<IBurgerOrder> = createContext(
+  {} as IBurgerOrder
+);
 
 export const OrderedBurgerContextProvider: FC<IProps> = ({ children }) => {
   const {
     orderedBurger,
     orderAddIngredient,
     orderRemoveIngredient,
-    removeAllIngredients
+    removeAllIngredients,
   } = useBurgerOrder();
 
   return (

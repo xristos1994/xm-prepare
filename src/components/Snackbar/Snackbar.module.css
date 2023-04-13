@@ -16,11 +16,11 @@
 }
 
 .snackbarContainer.warning {
-  background-color: orange;;
+  background-color: orange;
 }
 
 .snackbarContainer.info {
-  background-color: lightblue;;
+  background-color: lightblue;
 }
 
 .snackbarContainer.success {
@@ -32,6 +32,3 @@
   top: 0.25rem;
   right: 0.4rem;
 }
-
-
-

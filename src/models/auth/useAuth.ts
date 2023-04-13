@@ -15,7 +15,7 @@ export const useAuth: () => IAuth = () => {
     queryKey: ['login', credentials],
     queryFn: ({ queryKey }) => {
       return queryKey?.[1] || credentials
-        ? postLogin(queryKey?.[1] as ICredentials || credentials)
+        ? postLogin((queryKey?.[1] as ICredentials) || credentials)
         : null;
     },
     refetchOnWindowFocus: false,

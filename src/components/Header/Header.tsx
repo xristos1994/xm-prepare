@@ -7,8 +7,6 @@ import styles from './Header.module.css';
 export const Header: FC = () => {
   const { token, logout } = useAuth();
 
-  console.log('Header')
-
   return (
     <header className={styles.header}>
       <span className={styles.title}>My Burger</span>
@@ -24,4 +22,4 @@ export const Header: FC = () => {
       ) : null}
     </header>
   );
-}
+};

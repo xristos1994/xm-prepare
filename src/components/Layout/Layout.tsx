@@ -4,15 +4,14 @@ import { Header } from '../Header/Header';
 import styles from './Layout.module.css';
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
-export const Layout: FC<IProps> = ({children}) => {
-  console.log('Layout');
+export const Layout: FC<IProps> = ({ children }) => {
   return (
     <div>
       <Header />
       <main className={styles.main}>{children}</main>
     </div>
   );
-}
+};

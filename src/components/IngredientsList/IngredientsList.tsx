@@ -12,14 +12,11 @@ export const IngredientsList: FC = () => {
   const { orderAddIngredient, removeAllIngredients } =
     useContext(OrderedBurgerContext);
 
-    console.log('IngredientsList');
-
   return (
     <div className={styles.ingredientsListContainer}>
       <div className={styles.title}>Ingredients</div>
 
       <div className={styles.ingredients}>
-
         {Object.entries(ingredients || {}).map(([, ingredient]) => (
           <button
             key={ingredient.id}

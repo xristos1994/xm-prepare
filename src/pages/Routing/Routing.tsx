@@ -26,4 +26,4 @@ export const Routing: FC = () => {
       </Layout>
     </BrowserRouter>
   );
-}
+};

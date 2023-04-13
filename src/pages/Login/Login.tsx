@@ -29,7 +29,7 @@ export const Login: FC = () => {
 
     login({
       name: data.get('name') as string,
-      password: data.get('password') as string
+      password: data.get('password') as string,
     });
   };
 
@@ -42,23 +42,13 @@ export const Login: FC = () => {
       <h1>Login To My Burger</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor='name'>Name</label>
-        <input
-          type='text'
-          name='name'
-          required
-          autoComplete='off'
-        />
+        <input type='text' name='name' required autoComplete='off' />
 
         <br />
         <br />
 
         <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          name='password'
-          required
-          autoComplete='off'
-        />
+        <input type='password' name='password' required autoComplete='off' />
 
         <br />
         <br />
@@ -76,4 +66,4 @@ export const Login: FC = () => {
       ) : null}
     </div>
   );
-}
+};

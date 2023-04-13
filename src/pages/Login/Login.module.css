@@ -4,17 +4,16 @@
   text-align: center;
 }
 
-
 .loginContainer form {
   max-width: 20rem;
   margin: auto;
 }
 
-.loginContainer form input{
+.loginContainer form input {
   width: 100%;
 }
 
-.loginContainer form label{
+.loginContainer form label {
   text-align: left;
   display: block;
 }
