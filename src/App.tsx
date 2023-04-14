@@ -7,9 +7,9 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import { ThemeStyle } from './styles/ThemeStyle';
 import { UtilStyle } from './styles/UtilStyle';
 
-export const App: FC = () => {
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
+export const App: FC = () => {
   return (
     <>
       <GlobalStyle />

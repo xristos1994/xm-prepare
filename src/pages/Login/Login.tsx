@@ -1,13 +1,15 @@
-import { FC, FormEvent } from 'react';
+import { FC, FormEvent, useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../models/auth/useAuth';
+import { AuthContext } from '../../models/auth/AuthContext';
 import { Snackbar } from '../../components/Snackbar/Snackbar';
 import { StyledLogin } from './StyledLogin';
+import { useLogin } from '../../models/auth/useLogin';
 
 export const Login: FC = () => {
-  const { login, error, token, isLoading } = useAuth();
+  const { login, error, isLoading } = useLogin();
   const [hasError, setHasError] = useState(!!error);
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     setHasError(!!error);
