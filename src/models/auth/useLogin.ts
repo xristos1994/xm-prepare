@@ -36,6 +36,7 @@ export const useLogin: () => ILogin = () => {
     queryFn: () => {
       return postLogin(credentials as ICredentials);
     },
+    refetchOnWindowFocus: false,
     enabled: !!credentials,
     retry: false,
     refetchInterval: token && credentials ? tokenRetrievalInterval : false,
