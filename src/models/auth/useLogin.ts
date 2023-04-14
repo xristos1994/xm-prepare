@@ -5,12 +5,21 @@ import { tokenRetrievalInterval } from '../../config';
 import { postLogin } from './postLogin';
 import { AuthContext } from './AuthContext';
 import { ICredentials, ILoginSuccessData, ILogin } from './interfaces';
+import { useAuth } from './useAuth';
 
 const getGredentialsFromLocalStorage: () => ICredentials | null = () => {
   const localStorageCredentials = localStorage.getItem('credentials');
 
+  let credentials = null;
+
   if (localStorageCredentials) {
-    return JSON.parse(localStorageCredentials) as ICredentials
+    try {
+      credentials = JSON.parse(localStorageCredentials) as ICredentials;
+    } catch (error) {
+      localStorage.removeItem('credentials');
+    }
+
+    return credentials;
   }
 
   return null;
@@ -19,6 +28,7 @@ const getGredentialsFromLocalStorage: () => ICredentials | null = () => {
 export const useLogin: () => ILogin = () => {
   const [error, setError] = useState('');
   const { setToken, token } = useContext(AuthContext);
+  const { logout } = useAuth();
   const [credentials, setCredentials] = useState<ICredentials | null>(getGredentialsFromLocalStorage());
 
   const { isLoading, isFetching } = useQuery({
@@ -26,7 +36,6 @@ export const useLogin: () => ILogin = () => {
     queryFn: () => {
       return postLogin(credentials as ICredentials);
     },
-    // refetchOnWindowFocus: false,
     enabled: !!credentials,
     retry: false,
     refetchInterval: token && credentials ? tokenRetrievalInterval : false,
@@ -36,6 +45,9 @@ export const useLogin: () => ILogin = () => {
       } else {
         setError(error.message || 'Something went wrong');
       }
+
+      setCredentials(null);
+      logout();
     },
     onSuccess: (data: ILoginSuccessData) => {
       if (!data) {
